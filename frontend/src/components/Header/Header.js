@@ -1,4 +1,5 @@
 import React from "react";
+import './Header.css'
 import {
   Container,
   Form,
@@ -7,13 +8,17 @@ import {
   Navbar,
   NavDropdown,
 } from "react-bootstrap";
-import {} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Zipper</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">
+            Zipper
+          </Link>
+        </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -27,7 +32,9 @@ function Header() {
             </Form>
           </Nav>
           <Nav>
-            <Nav.Link href="/mynotes">My Notes</Nav.Link>
+            <div className="notes">
+              <Link to="mynotes">My Notes</Link>
+            </div>
             <NavDropdown title="User" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Divider />
