@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Accordion, Badge, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MainScreen } from "../../components/MainScreen/MainScreen";
-import notes from "./Notes";
+import axios from 'axios'
 
 export const MyNotes = () => {
+    const [notes, setNotes] = useState([])
+
   const deleteHandler = () => {
     if (window.confirm("Are you Sure?")) {
     }
   };
+
+  useEffect(() => {
+    const fetchNotes = async ()=> {
+        const { data } = await axios.get("/api/notes")
+        setNotes(data)
+    }
+
+    fetchNotes();
+  }, [])
+  
 
   return (
     <MainScreen title="Welcome Back Jay Patel...">
@@ -18,7 +30,7 @@ export const MyNotes = () => {
         </Button>
       </Link>
       {notes.map((note) => (
-        <Accordion defaultActiveKey={["0"]}>
+        <Accordion key={note._id} defaultActiveKey={["0"]}>
           <Accordion.Item eventkey="0">
             <Card style={{ margin: 10 }}>
               <Card.Header style={{ display: "flex" }}>
@@ -58,7 +70,7 @@ export const MyNotes = () => {
                   <blockquote className="blockquote mb-0">
                     <p>{note.content}</p>
                     <footer className="blockquote-footer">
-                      Creater on - date
+                      Created on - date
                     </footer>
                   </blockquote>
                 </Card.Body>
