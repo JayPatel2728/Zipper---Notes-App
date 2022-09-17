@@ -1,0 +1,21 @@
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+
+.blue-link{
+    color: blue;
+}
+
+.blue-link:hover{
+    color: blue;
+}
+
+input{
+    border: 1px solid black;
+}
+
+.margin-20{
+    margin-bottom: 20px;
+}
