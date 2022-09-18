@@ -3,6 +3,7 @@ const notes = require("./data/notes");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
+const noteRoutes  = require("./routes/noteRoutes")
 const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
 
 const app = express();
@@ -11,15 +12,9 @@ dotenv.config({path: path.resolve(__dirname, '../.env')}); //so i can use env va
 connectDB();
 app.use(express.json()); //used for postman requests
 
-app.get("/", (req, res) => {
-  res.send("API is running");
-});
-
-app.get("/api/notes", (req, res) => {
-  res.json(notes);
-});
 
 app.use("/api/users", userRoutes);
+app.use("/api/notes", noteRoutes);
 
 // Error Handling middlewares
 app.use(notFound);
