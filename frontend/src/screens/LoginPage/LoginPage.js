@@ -3,7 +3,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import ErrorMessage from "../../components/ErrorMsg/ErrorMsg";
 import Loading from "../../components/Loading/Loading";
-import { MainScreen } from "../../components/MainScreen/MainScreen";
+import MainScreen from "../../components/MainScreen/MainScreen";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginPage.css";
 import { login } from "../../actions/userActions";

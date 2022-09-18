@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { register } from "../../actions/userActions";
 import ErrorMessage from "../../components/ErrorMsg/ErrorMsg";
 import Loading from "../../components/Loading/Loading";
-import { MainScreen } from "../../components/MainScreen/MainScreen";
+import MainScreen from "../../components/MainScreen/MainScreen";
 
 function RegisterPage() {
   const [email, setEmail] = useState("");

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 
-function Header() {
+function Header({ setSearch }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,8 +20,10 @@ function Header() {
   const { userInfo } = userLogin;
 
   const logoutHandler = () => {
-    dispatch(logout());
-    navigate('/')
+    if (userInfo) {
+      dispatch(logout());
+      navigate("/");
+    }
   };
 
   return (
@@ -39,23 +41,25 @@ function Header() {
                 type="text"
                 placeholder="Search"
                 className="mr-sm-2"
+                onChange={(e)=> setSearch(e.target.value)}
               />
             </Form>
           </Nav>
-          <Nav>
+          {userInfo?<Nav>
             <div className="notes">
-              <Link to="mynotes">My Notes</Link>
+              <Link to="/mynotes">My Notes</Link>
             </div>
-            <NavDropdown title="User" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
+            <NavDropdown title={userInfo?.name} id="collasible-nav-dropdown">
+              <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item
-                onClick={logoutHandler}
-              >
+              <NavDropdown.Item onClick={logoutHandler}>
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
-          </Nav>
+          </Nav>: 
+          <Nav>
+            <Link to="/login">Login</Link>
+            </Nav>}
         </Navbar.Collapse>
       </Container>
     </Navbar>
